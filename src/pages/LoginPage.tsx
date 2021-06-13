@@ -8,6 +8,7 @@ interface LoginPageProps {
   setDisplayName: any;
   connected: boolean;
   socket: any;
+  setRooms: any;
 }
 
 const LoginPage: React.FC<LoginPageProps> = ({
@@ -16,6 +17,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
   setDisplayName,
   connected,
   socket,
+  setRooms,
 }) => {
   const [redirectNext, setRedirectNext] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -24,7 +26,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
   const buttonClickHandler = async (e: any) => {
     e.preventDefault();
     if (invalidName || !connected) return;
-    const data = await registerDisplayName(socket, displayNameInput);
+    const data = await registerDisplayName(socket, displayNameInput, setRooms);
     if (!data.created) return setErrorMessage(data.message);
     setDisplayName(displayNameInput);
     setRedirectNext(true);

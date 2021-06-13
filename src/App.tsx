@@ -8,6 +8,7 @@ import {
 
 import Navbar from './components/Navbar';
 import useDisplayName from './hooks/useDisplayName';
+import useRooms from './hooks/useRooms';
 import useSocket from './hooks/useSocket';
 import LoginPage from './pages/LoginPage';
 import RoomPage from './pages/RoomPage';
@@ -18,6 +19,7 @@ const App = () => {
     useDisplayName();
 
   const [socket, connected] = useSocket();
+  const [rooms, setRooms] = useRooms(socket, connected);
 
   return (
     <Router>
@@ -25,6 +27,7 @@ const App = () => {
       <Switch>
         <Route exact path='/login'>
           <LoginPage
+            setRooms={setRooms}
             socket={socket}
             connected={connected}
             displayNameInput={displayNameInput}
@@ -34,11 +37,13 @@ const App = () => {
         </Route>
         <Route exact path='/rooms'>
           {/* If not logged in, redirect to login page */}
-          {!displayName ? <Redirect to='/login' /> : <RoomsListPage />}
+          {!displayName ? <Redirect to='/login' /> : null}
+          <RoomsListPage socket={socket} rooms={rooms} />
         </Route>
-        <Route exact path='/rooms/:roomId'>
+        <Route exact path='/rooms/:roomName'>
           {/* If not logged in, redirect to login page */}
-          {!displayName ? <Redirect to='/login' /> : <RoomPage />}
+          {!displayName ? <Redirect to='/login' /> : null}
+          <RoomPage rooms={rooms} socket={socket} />
         </Route>
         <Route exact path=''>
           <Redirect to='/login' />
