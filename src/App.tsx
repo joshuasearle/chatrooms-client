@@ -43,7 +43,7 @@ const App = () => {
         <Route exact path='/rooms/:roomName'>
           {/* If not logged in, redirect to login page */}
           {!displayName ? <Redirect to='/login' /> : null}
-          <RoomPage rooms={rooms} socket={socket} />
+          <RoomPage rooms={rooms} socket={socket} displayName={displayName} />
         </Route>
         <Route exact path=''>
           <Redirect to='/login' />

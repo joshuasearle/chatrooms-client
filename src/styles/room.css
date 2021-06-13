@@ -1,0 +1,54 @@
+.room__messages {
+  background-color: white;
+  width: var(--page-clamp);
+  margin: 0 auto;
+  margin-top: 2em;
+  border-radius: var(--radius);
+  padding: 1em;
+  overflow: auto;
+  height: 50vh;
+}
+
+.room__message {
+  margin-top: 0.5em;
+  border-radius: var(--radius);
+  padding: 0.5em 1em;
+  background-color: var(--secondary-color);
+  color: white;
+  width: fit-content;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.room__message--left {
+  margin-top: 0;
+}
+
+.room__message--right {
+  background-color: var(--secondary-color-dark);
+  float: right;
+  clear: both;
+}
+.room__author--left {
+  margin-top: 0.5em;
+}
+
+.room__author--right {
+  display: none;
+}
+
+.room__send {
+  width: var(--page-clamp);
+  margin: 0 auto;
+}
+
+.room__input {
+  margin: 0;
+  margin-top: 1em;
+}
+
+.room__button {
+  margin: 0;
+  margin-top: 1em;
+  padding: 0.5em 3em;
+}
