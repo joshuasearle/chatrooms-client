@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Rubik', sans-serif;
+}
+
+html {
+  background-color: var(--primary-color);
+}
+
+.button {
+  text-decoration: none;
+  display: block;
+  border: none;
+  margin: 2em auto;
+  font-size: 1.2rem;
+  padding: 1em 3em;
+  background-color: var(--secondary-color);
+  border-radius: var(--radius);
+  color: white;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: var(--secondary-color-dark);
+}
+
+.input {
+  display: block;
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: var(--radius);
+  padding: 0.5em 1em;
+  font-size: 1.2rem;
+  min-width: 40%;
+  max-width: 80%;
+  width: fit-content;
+  outline: none;
+  height: 3rem;
+}
+
+.input:focus {
+  border: 2px solid var(--secondary-color);
+}
+
+.input:focus::placeholder {
+  color: transparent;
+}
+
+.error {
+  color: white;
+  margin: 2em 4em;
+  padding: 0.5em 0;
+  text-align: center;
+  border-radius: var(--radius);
+  font-size: 1.1rem;
+  background-color: var(--warning-color);
+}
+
+.success {
+  color: black;
+  margin: 2em 4em;
+  padding: 0.5em 0;
+  text-align: center;
+  border-radius: var(--radius);
+  font-size: 1.1rem;
+  background-color: var(--success-color);
+}
+
+.half-page {
+  width: 40vw;
+  min-width: 300px;
+  margin: 2em;
+  background-color: white;
+  border-radius: var(--radius);
+}

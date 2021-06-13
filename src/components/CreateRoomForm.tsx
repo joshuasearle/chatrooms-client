@@ -26,18 +26,26 @@ const CreateRoomForm: React.FC<CreateRoomFormProps> = ({ socket }) => {
   };
 
   return (
-    <div className='create-room'>
+    <div className='create-room half-page'>
       <h1 className='create-room__title'>Create Room</h1>
       <form className='create-room__form'>
         <input
           value={roomName}
           type='text'
-          className='create-room__input'
-          onChange={(e: any) => setRoomName(e.target.value)}
+          className='create-room__input input'
+          onChange={(e: any) => {
+            setConfirmationMessage('');
+            setRoomName(e.target.value);
+          }}
         />
-        {errorMessage ? errorMessage : null}
-        {confirmationMessage ? confirmationMessage : null}
-        <button className='create-room__button' onClick={handleCreateRoom}>
+        {errorMessage && <div className='error'>{errorMessage}</div>}
+        {confirmationMessage && (
+          <div className='success'>{confirmationMessage}</div>
+        )}
+        <button
+          className='create-room__button button'
+          onClick={handleCreateRoom}
+        >
           Create Room
         </button>
       </form>

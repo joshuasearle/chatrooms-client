@@ -25,11 +25,20 @@ const LoginPage: React.FC<LoginPageProps> = ({
 
   const buttonClickHandler = async (e: any) => {
     e.preventDefault();
-    if (invalidName || !connected) return;
-    const data = await registerDisplayName(socket, displayNameInput, setRooms);
-    if (!data.created) return setErrorMessage(data.message);
-    setDisplayName(displayNameInput);
-    setRedirectNext(true);
+    if (invalidName) return;
+    if (!connected) return setErrorMessage('Server error');
+    try {
+      const data = await registerDisplayName(
+        socket,
+        displayNameInput,
+        setRooms
+      );
+      if (!data.created) return setErrorMessage(data.message);
+      setDisplayName(displayNameInput);
+      setRedirectNext(true);
+    } catch (e) {
+      setErrorMessage('Server error');
+    }
   };
 
   if (redirectNext) return <Redirect to='/rooms' push />;
@@ -40,14 +49,17 @@ const LoginPage: React.FC<LoginPageProps> = ({
       <form className='login__form'>
         <input
           type='text'
-          className='login__input'
+          className='login__input input'
           value={displayNameInput}
           onChange={(e: any) => setDisplayNameInput(e.target.value)}
+          placeholder='Enter your display name here'
         />
-        {errorMessage ? errorMessage : null}
+        {errorMessage && (
+          <div className='login__error error'>{errorMessage}</div>
+        )}
         <button
           disabled={invalidName}
-          className='login__button'
+          className='button'
           onClick={buttonClickHandler}
         >
           View Rooms

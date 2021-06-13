@@ -1,0 +1,21 @@
+.rooms-list {
+}
+
+.rooms-list__title {
+  text-align: center;
+  margin: 1em auto;
+}
+
+.rooms-list__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 2em 1em;
+  padding-top: 0;
+}
+
+.rooms-list__button {
+  margin: 1em;
+  font-size: 1.1rem;
+}

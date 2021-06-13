@@ -10,10 +10,10 @@ interface RoomsListPageProps {
 
 const RoomsListPage: React.FC<RoomsListPageProps> = ({ socket, rooms }) => {
   return (
-    <>
+    <div className='rooms-page'>
       <CreateRoomForm socket={socket} />
       <RoomsList rooms={rooms} />
-    </>
+    </div>
   );
 };
 

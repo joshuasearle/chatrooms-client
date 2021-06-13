@@ -1,0 +1,11 @@
+:root {
+  --primary-color: #202020;
+  --secondary-color-hue: 310;
+  --secondary-color: hsl(var(--secondary-color-hue), 100%, 30%);
+  --secondary-color-dark: hsl(var(--secondary-color-hue), 100%, 22%);
+  --secondary-color-light: hsl(var(--secondary-color-hue), 100%, 70%);
+  --radius: 0.3rem;
+  --page-clamp: clamp(400px, 65vw, 800px);
+  --warning-color: rgb(255, 95, 95);
+  --success-color: rgb(116, 209, 116);
+}
