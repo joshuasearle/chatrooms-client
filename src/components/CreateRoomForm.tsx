@@ -10,6 +10,8 @@ const CreateRoomForm: React.FC<CreateRoomFormProps> = ({ socket }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [confirmationMessage, setConfirmationMessage] = useState('');
 
+  const invalidRoomName = roomName === '';
+
   const handleCreateRoom = async (e: any) => {
     e.preventDefault();
 
@@ -35,6 +37,7 @@ const CreateRoomForm: React.FC<CreateRoomFormProps> = ({ socket }) => {
           className='create-room__input input'
           onChange={(e: any) => {
             setConfirmationMessage('');
+            setErrorMessage('');
             setRoomName(e.target.value);
           }}
         />
@@ -45,6 +48,7 @@ const CreateRoomForm: React.FC<CreateRoomFormProps> = ({ socket }) => {
         <button
           className='create-room__button button'
           onClick={handleCreateRoom}
+          disabled={invalidRoomName}
         >
           Create Room
         </button>

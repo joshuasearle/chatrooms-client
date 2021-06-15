@@ -33,10 +33,16 @@ const LoginPage: React.FC<LoginPageProps> = ({
         displayNameInput,
         setRooms
       );
+      console.log(data);
+
+      console.log(data.created);
       if (!data.created) return setErrorMessage(data.message);
+
       setDisplayName(displayNameInput);
       setRedirectNext(true);
     } catch (e) {
+      console.log(e);
+
       setErrorMessage('Server error');
     }
   };

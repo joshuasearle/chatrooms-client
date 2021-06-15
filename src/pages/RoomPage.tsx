@@ -14,17 +14,21 @@ const RoomPage: React.FC<RoomPageProps> = ({ rooms, socket, displayName }) => {
   const { roomName } = useParams<any>();
   const room = rooms.find((room) => room.roomName === roomName);
 
+  const invalidInput = input === '';
+
   const handleClick = (e: any) => {
     e.preventDefault();
     socket.emit('message', { roomName, content: input, socketId: socket.id });
+    setInput('');
   };
 
   if (!room) return <Redirect to={displayName ? '/rooms' : '/login'} />;
 
   return (
     <div className='room'>
+      <h1 className='room__title'>{roomName}</h1>
       <div className='room__messages'>
-        {room.messages.map((message) => {
+        {room.messages.map((message, i) => {
           const authorClass =
             message.displayName === displayName
               ? 'room__author room__author--right'
@@ -33,14 +37,14 @@ const RoomPage: React.FC<RoomPageProps> = ({ rooms, socket, displayName }) => {
             message.displayName === displayName
               ? 'room__message room__message--right'
               : 'room__message room__message--left';
-          return (
-            <>
-              <div className={authorClass}>
-                {stringShortener(message.displayName, 15)}
-              </div>
-              <div className={messageClass}>{message.content}</div>
-            </>
-          );
+          return [
+            <div key={`message${i}`} className={authorClass}>
+              {stringShortener(message.displayName, 15)}
+            </div>,
+            <div key={`author${i}`} className={messageClass}>
+              {message.content}
+            </div>,
+          ];
         })}
       </div>
 
@@ -50,7 +54,11 @@ const RoomPage: React.FC<RoomPageProps> = ({ rooms, socket, displayName }) => {
           onChange={(e: any) => setInput(e.target.value)}
           className='room__input input'
         />
-        <button className='room__button button' onClick={handleClick}>
+        <button
+          disabled={invalidInput}
+          className='room__button button'
+          onClick={handleClick}
+        >
           Send
         </button>
       </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
 
-const server = 'http://127.0.0.1:5000';
+import server from '../api/apiPath';
 
 const useSocket = (): [any, boolean] => {
   const [socket, setSocket] = useState<any>(null);
